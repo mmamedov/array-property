@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/mmamedov/array-property.svg?branch=master)](https://travis-ci.org/mmamedov/array-property) [![Latest Stable Version](http://img.shields.io/packagist/v/mmamedov/array-property.svg)](https://packagist.org/packages/mmamedov/array-property) [![License](https://img.shields.io/packagist/l/mmamedov/array-property.svg)](https://packagist.org/packages/mmamedov/array-property) 
+
+
 ArrayProperty
 -------------
 Access arrays in a simple and intuitive object-oriented way. Keys and values are treated as properties.
