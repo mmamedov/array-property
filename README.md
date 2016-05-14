@@ -11,7 +11,7 @@ composer require mmamedov/array-property
 
 Usage
 -----
-ArrayProperty is used in Lucid framework, for ready YAML configuration file and easily accessing it's parameters.
+ArrayProperty is used in Lucid framework, for accessing parameters configured in YAML configuration file.
 
 Consider the following sample PHP array:
 
