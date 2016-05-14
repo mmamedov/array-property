@@ -44,6 +44,9 @@ echo $a->app->deep->inner; //prints 'some value'
 //convert to array
 $deep = $a->app->deep->toArray();
 print_r($deep); //outputs deep as array;
+
+//check if value exists:
+$a->app->exist('log_dir') //returns true
 ```
 
 For more examples see code inside [ArrayProperty examples](examples/) directory.

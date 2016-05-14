@@ -54,6 +54,13 @@ echo '$a->app->deep->inner.: '.$a->app->deep->inner."<br/>"."\n";
 echo '$a->database->name: '. $a->database->name."<br/>"."\n";
 
 /**
+ * Check if leaf/node exists
+ */
+echo '<h3>Check if leaf/node exists:</h3>';
+echo '$a->database->exist(\'host\'): '."<br/>"."\n";
+var_dump($a->database->exist('host'));
+
+/**
  * Convert nodes to arrays, has more 'leaves'
  */
 echo '<h3>Convert using ->toArray() :</h3>';
