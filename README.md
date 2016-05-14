@@ -4,6 +4,11 @@ Access arrays in a simple and intuitive object-oriented way. Keys and values are
 
 ArrayProperty can be used on any PHP array variable.
 
+Install using composer:
+```
+composer require mmamedov/array-property
+```
+
 Usage
 -----
 ArrayProperty is used in Lucid framework, for ready YAML configuration file and easily accessing it's parameters.
