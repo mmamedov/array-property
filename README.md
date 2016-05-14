@@ -7,7 +7,7 @@ Access arrays in a simple and intuitive object-oriented way. Keys and values are
 
 ArrayProperty can be used on any PHP array variable.
 
-Install using composer:
+Install using composer (recommended):
 ```
 composer require mmamedov/array-property
 ```
