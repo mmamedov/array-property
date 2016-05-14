@@ -60,6 +60,9 @@ echo '<h3>Convert using ->toArray() :</h3>';
 $array_node = $a->database->toArray();
 var_dump($array_node);
 
+$deep = $a->app->deep->toArray();
+var_dump($deep);
+
 /**
  * Get internal PHP's ArrayObject element
  */
