@@ -3,7 +3,7 @@
 
 ArrayProperty
 -------------
-Access arrays in a simple and intuitive object-oriented way. Keys and values are treated as properties.
+Syntax sugar for working with arrays in PHP. Makes it easier to access array elements. Keys are treated as properties.
 
 ArrayProperty can be used on any PHP array variable.
 
@@ -14,8 +14,6 @@ composer require mmamedov/array-property
 
 Usage
 -----
-ArrayProperty is used in Lucid framework, for accessing parameters configured in YAML configuration file.
-
 Consider the following sample PHP array:
 
 ```php
