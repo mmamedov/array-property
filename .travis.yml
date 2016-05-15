@@ -4,7 +4,7 @@ php:
   - '5.6'
 
 script:
-  - phpunit.phar -v -c phpunit.xml
+  - phpunit -v -c phpunit.xml
 
 branches:
     only:
