@@ -45,8 +45,8 @@ class ArrayProperty{
                 //is next array available, return ArrayProperty
                 return new ArrayProperty($this->array_ob->offsetGet($name));
             } else {
-                //not array, text node
-                return strval($this->array_ob->offsetGet($name));
+                //not array, return value
+                return $this->array_ob->offsetGet($name);
             }
         }
         else{

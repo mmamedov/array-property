@@ -58,12 +58,19 @@ class ArrayPropertyTest extends \PHPUnit_Framework_TestCase
 
     public function testConstructAndGetArrayObject()
     {
-        $this->assertTrue($this->ap->getArrayObject() instanceof \ArrayObject);
-        $this->assertNotEmpty($this->ap->some);
+        $array = $this->ap;
+
+        $this->assertTrue($array->getArrayObject() instanceof \ArrayObject);
+        $this->assertNotEmpty($array->some);
+        $this->assertFalse($array->app->debug);
+        $this->assertTrue($array->app->log);
     }
 
+    /**
+     * @expectedException \Exception
+     */
     public function testGetException(){
-        $this->expectException(\Exception::class);
+       // $this->expectException(\Exception::class);
         $this->ap->nonexistant;
     }
 

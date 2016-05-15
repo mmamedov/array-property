@@ -52,6 +52,8 @@ echo '<h3>Accessing values:</h3>';
 echo '$a->app->log_dir: '. $a->app->log_dir ."<br/>"."\n";
 echo '$a->app->deep->inner.: '.$a->app->deep->inner."<br/>"."\n";
 echo '$a->database->name: '. $a->database->name."<br/>"."\n";
+echo 'var_dump($a->app->log): <br/>';
+var_dump($a->app->log);
 
 /**
  * Check if leaf/node exists
