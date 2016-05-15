@@ -42,7 +42,7 @@ class ArrayProperty{
         if($this->array_ob->offsetExists($name)) {
 
             if (is_array($this->array_ob->offsetGet($name))) {
-                //is next array available, return ArrayParam
+                //is next array available, return ArrayProperty
                 return new ArrayProperty($this->array_ob->offsetGet($name));
             } else {
                 //not array, text node
@@ -50,7 +50,7 @@ class ArrayProperty{
             }
         }
         else{
-            throw new \Exception('ArrayParam: param not found: '.$name);
+            throw new \Exception('ArrayProperty: param not found: '.$name);
         }
     }
 

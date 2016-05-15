@@ -62,6 +62,11 @@ class ArrayPropertyTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEmpty($this->ap->some);
     }
 
+    public function testGetException(){
+        $this->expectException(\Exception::class);
+        $this->ap->nonexistant;
+    }
+
     public function testToArray()
     {
         $tmp = $this->ap->toArray();
