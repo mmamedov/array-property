@@ -1,7 +1,7 @@
 ArrayProperty Changelog
 =======================
 
-### 1.1.1 (2016-05-18)
+### 1.1.1 (Work in progress)
 
 * ArrayProperty::MIXED_MODE and ArrayProperty::OBJECT_MODE added. Constructor defaults to MIXED_MODE 
 * Dynamically change operation mode via setMode(). Magic __get() returns results depending on mode set.
