@@ -12,7 +12,7 @@ Install using composer (recommended):
 composer require mmamedov/array-property
 ```
 Or manually add to your composer.json file:
-```
+```json
 "require": {
     "mmamedov/array-property": "^1.1"
 }
