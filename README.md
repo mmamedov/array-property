@@ -76,10 +76,10 @@ You can switch modes between OBJECT_MODE and MIXED_MODE(default). Mode is set as
 by calling setMode() method. In MIXED_MODE array values are returned in their original type, whereas in OBJECT_MODE
 returned values are always ArrayProperty object: 
 ```php
-$prop->setMode('ArrayProperty::OBJECT_MODE');
+$prop->setMode(ArrayProperty::OBJECT_MODE);
 var_dump($prop->myNewNode);     //returns ArrayProperty object
 
-$prop->setMode('ArrayProperty::MIXED_MODE');
+$prop->setMode(ArrayProperty::MIXED_MODE);
 var_dump($prop->myNewNode);     //returns "myValue" which was set before
 ```
 
