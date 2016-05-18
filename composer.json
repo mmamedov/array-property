@@ -1,7 +1,7 @@
 {
     "name": "mmamedov/array-property",
     "description": "Access arrays in an intuitive and object-oriented way. Keys and values are treated as properties.",
-    "keywords": ["array", "arrays", "array access", "array property", "php arrays"],
+    "keywords": ["array property", "array", "arrays", "array access", "php arrays"],
     "type": "library",
     "license": "MIT",
     "authors": [

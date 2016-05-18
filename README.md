@@ -3,7 +3,7 @@
 
 ArrayProperty
 -------------
-Syntax sugar for working with arrays in PHP. Makes it easier to access array elements. Keys are treated as properties.
+Syntax sugar for working with arrays in PHP. Read and write to arrays in an object-oriented style. Keys are treated as properties.
 
 ArrayProperty can be used on any PHP array variable.
 
@@ -36,15 +36,32 @@ $sample =
 This is how easy to work with it using ArrayProperty:
 ```php
 $a = new ArrayProperty($sample);
-echo $a->app->log_dir; // prints /log/path
-echo $a->app->deep->inner; //prints 'some value'
+echo $a->app->log_dir;      //outputs /log/path
+echo $a->app->deep->inner;  //outputs 'some value'
 
 //convert to array
 $deep = $a->app->deep->toArray();
-print_r($deep); //outputs deep as array;
+print_r($deep);             //outputs deep as array;
 
 //check if value exists:
-$a->app->exist('log_dir') //returns true
+$a->app->exist('log_dir')   //returns true
+```
+
+Load new array and acces its values inline:
+```php
+$prop = new ArrayProperty(array());
+$new = array(1 => 'apple', 2 => 'orange', 3 => 'olive', 4 => 'grapes', 'multi'=>array('key'=>'value'));
+echo $prop->loadArray($new)->{1}; //outputs "apple"
+echo $prop->multi->key;           //outputs "value"
+```
+
+Now let's add new element to the `$prop` ArrayProperty object we created above:
+```php
+$prop->myNewNode = "myValue";   //you can assign arrays as well.
+echo $prop->myNewNode;          //outputs 'myValue';
+//overwrite existing elements
+$prop->{1} = "banana"; 
+echo $prop->{1};                //now outputs "banana" instead of "apple"
 ```
 
 For more examples see code inside [ArrayProperty examples](examples/) directory.

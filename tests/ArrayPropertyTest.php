@@ -34,13 +34,12 @@ class ArrayPropertyTest extends \PHPUnit_Framework_TestCase
                         'level' => '2'
                     )
                 ),
-                'database' =>
-                    array(
-                        'host' => 'localhost',
-                        'user' => 'test',
-                        'password' => 'testPwd=!',
-                        'name' => 'localdbname'
-                    ),
+                'database' => array(
+                    'host' => 'localhost',
+                    'user' => 'test',
+                    'password' => 'testPwd=!',
+                    'name' => 'localdbname'
+                ),
                 'some' => 'value',
                 'empty',
                 12 => 2016,
@@ -56,21 +55,97 @@ class ArrayPropertyTest extends \PHPUnit_Framework_TestCase
         unset($this->ap);
     }
 
-    public function testConstructAndGetArrayObject()
+    public function testConstructor()
     {
-        $array = $this->ap;
+        $prop = $this->ap;
 
-        $this->assertTrue($array->getArrayObject() instanceof \ArrayObject);
-        $this->assertNotEmpty($array->some);
-        $this->assertFalse($array->app->debug);
-        $this->assertTrue($array->app->log);
+        $this->assertAttributeEquals($prop::MIXED_MODE, 'mode', $this->ap);
+        $this->assertTrue($prop->getArrayObject() instanceof \ArrayObject);
+    }
+
+    public function testSetMode()
+    {
+        $prop = $this->ap;
+
+        $prop->setMode($prop::OBJECT_MODE);
+        $this->assertAttributeEquals($prop::OBJECT_MODE, 'mode', $this->ap);
+
+        $prop->setMode($prop::MIXED_MODE);
+        $this->assertAttributeEquals($prop::MIXED_MODE, 'mode', $this->ap);
+    }
+
+    /**
+     * @depends testSetMode
+     */
+    public function testGetMode()
+    {
+        $prop = $this->ap;
+
+        $prop->setMode($prop::MIXED_MODE);
+        $this->assertEquals($prop::MIXED_MODE, $prop->getMode());
+
+        $prop->setMode($prop::OBJECT_MODE);
+        $this->assertEquals($prop::OBJECT_MODE, $prop->getMode());
+
+    }
+
+    public function testGet()
+    {
+        $prop = $this->ap;
+
+        $this->assertNotEmpty($prop->some);
+        $this->assertFalse($prop->app->debug);
+        $this->assertTrue($prop->app->log);
+
+        //change mode
+        $prop->setMode($prop::OBJECT_MODE);
+        $this->assertTrue($prop->some instanceof ArrayProperty);
+        $this->assertTrue($prop->database->host instanceof ArrayProperty);
+        $this->assertTrue($prop->some instanceof ArrayProperty);
+        $this->assertTrue($prop->{12} instanceof ArrayProperty);
+        $this->assertTrue($prop->array instanceof ArrayProperty);
+        $this->assertTrue($prop->app->deep->inner instanceof ArrayProperty);
+        $this->assertNotEquals($prop->some, 'value');
+
+        //change mode
+        $prop->setMode($prop::MIXED_MODE);
+        $this->assertEquals($prop->some, 'value');
+        $this->assertEquals($prop->database->host, 'localhost');
+        $this->assertEquals($prop->some, 'value');
+        $this->assertEquals($prop->{12}, 2016);
+        $this->assertInternalType('integer', $prop->{12});
+        $this->assertNotInternalType('string', $prop->{12});
+        $this->assertTrue($prop->array instanceof ArrayProperty);
+        $this->assertEquals($prop->app->deep->inner, 'some value');
+    }
+
+    public function testSet()
+    {
+        $prop = $this->ap;
+
+        $prop->newvalue = "test";
+        $this->assertEquals($prop->newvalue, 'test');
+
+        $prop->newvalue = 987;
+        $this->assertEquals($prop->newvalue, 987);
+        $this->assertInternalType('integer', $prop->newvalue);
+
+        $prop->newvalue = false;
+        $this->assertEquals(false, $prop->newvalue);
+        $this->assertInternalType('boolean', $prop->newvalue);
+
+
+        $prop->newNode = array('my' => array('inner' => 'value', 'some' => 'other'));
+        $this->assertNotEmpty($prop->newNode);
+        $this->assertEquals('other', $prop->newNode->my->some);
+        $this->assertTrue($prop->newNode->my instanceof ArrayProperty);
     }
 
     /**
      * @expectedException \Exception
      */
-    public function testGetException(){
-       // $this->expectException(\Exception::class);
+    public function testGetException()
+    {
         $this->ap->nonexistant;
     }
 
@@ -107,7 +182,16 @@ class ArrayPropertyTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($this->ap->database->exist('sfsdfdsf'));
         $this->assertFalse($this->ap->exist('nonexsistant'));
-
     }
 
+    public function testLoadArray()
+    {
+        $this->assertAttributeNotEmpty('array_ob', $this->ap);
+
+        $this->ap->loadArray(array());
+        $this->assertAttributeEmpty('array_ob', $this->ap);
+
+        $this->ap->loadArray(array('some', 'value', 'third'));
+        $this->assertEquals(3, count($this->ap->toArray()));
+    }
 }

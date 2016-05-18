@@ -9,10 +9,9 @@
  */
 
 //composer autoload
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use ArrayProperty\ArrayProperty;
-
 
 //sample array data
 $sample =
@@ -49,9 +48,9 @@ $a = new ArrayProperty($sample);
  * Access any value, 'leaf'
  */
 echo '<h3>Accessing values:</h3>';
-echo '$a->app->log_dir: '. $a->app->log_dir ."<br/>"."\n";
-echo '$a->app->deep->inner.: '.$a->app->deep->inner."<br/>"."\n";
-echo '$a->database->name: '. $a->database->name."<br/>"."\n";
+echo '$a->app->log_dir: ' . $a->app->log_dir . "<br/>" . "\n";
+echo '$a->app->deep->inner.: ' . $a->app->deep->inner . "<br/>" . "\n";
+echo '$a->database->name: ' . $a->database->name . "<br/>" . "\n";
 echo 'var_dump($a->app->log): <br/>';
 var_dump($a->app->log);
 
@@ -59,7 +58,7 @@ var_dump($a->app->log);
  * Check if leaf/node exists
  */
 echo '<h3>Check if leaf/node exists:</h3>';
-echo '$a->database->exist(\'host\'): '."<br/>"."\n";
+echo '$a->database->exist(\'host\'): ' . "<br/>" . "\n";
 var_dump($a->database->exist('host'));
 
 /**
@@ -76,4 +75,12 @@ var_dump($deep);
  * Get internal PHP's ArrayObject element
  */
 echo '<h3>Get internal PHP\'s ArrayObject element</h3>';
-echo 'count: '. $a->getArrayObject()->count(); //count of values
+echo 'count: ' . $a->getArrayObject()->count(); //count of values
+
+/**
+ * Reload a new array into
+ */
+echo '<h3>loadArray() - Load a new array into object</h3>';
+echo '$new = array(1 => \'apple\', 2 => \'orange\', 3 => \'olive\', 4 => \'grapes\');<br>';
+$new = array(1 => 'apple', 2 => 'orange', 3 => 'olive', 4 => 'grapes');
+echo '$a->loadArray($new)->{1}; - outputs <b>'. $a->loadArray($new)->{1}.'</b>';
