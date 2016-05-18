@@ -10,7 +10,7 @@ ArrayProperty Changelog
 * Writing values is enabled! For now, first dimension only: $array_prop->newNodeName = "newValue";
 * Writing overwrites any existing values. Multidimensional write is not supported, like in $arr_prop->firstIndex->second = "values"  
 * loadArray and magic __set support auto chaining ($this is returned internally) 
-* Tests updated
+* Tests updated. Now being tested for PHP versions 5.5, 5.6, 7.0.
 
 ### 1.1.0 (2016-05-15)
 

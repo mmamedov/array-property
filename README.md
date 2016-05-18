@@ -11,6 +11,13 @@ Install using composer (recommended):
 ```
 composer require mmamedov/array-property
 ```
+Or manually add to your composer.json file:
+```
+"require": {
+    "mmamedov/array-property": "^1.1"
+}
+
+```
 
 Usage
 -----
@@ -62,6 +69,18 @@ echo $prop->myNewNode;          //outputs 'myValue';
 //overwrite existing elements
 $prop->{1} = "banana"; 
 echo $prop->{1};                //now outputs "banana" instead of "apple"
+```
+Please note that multidimensional write is not supported, like in $prop->firstIndex->second = "value";
+
+You can switch modes between OBJECT_MODE and MIXED_MODE(default). Mode is set as second parameter in the constructor, or
+by calling setMode() method. In MIXED_MODE array values are returned in their original type, whereas in OBJECT_MODE
+returned values are always ArrayProperty object: 
+```php
+$prop->setMode('ArrayProperty::OBJECT_MODE');
+var_dump($prop->myNewNode);     //returns ArrayProperty object
+
+$prop->setMode('ArrayProperty::MIXED_MODE');
+var_dump($prop->myNewNode);     //returns "myValue" which was set before
 ```
 
 For more examples see code inside [ArrayProperty examples](examples/) directory.

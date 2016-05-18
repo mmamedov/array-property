@@ -56,11 +56,11 @@ echo $array_property->third->person->name . '<br>';
 var_dump($array_property->toArray());
 
 //Change to Object Mode
-$array_property->setMode($array_property::OBJECT_MODE);
+$array_property->setMode(ArrayProperty::OBJECT_MODE);
 //We are in Object mode, so vardump will return an ArrayProperty object
 var_dump($array_property->third->person->lastname);
 
 //change back to mixed mode
-$array_property->setMode($array_property::MIXED_MODE);
+$array_property->setMode(ArrayProperty::MIXED_MODE);
 //now string will be printed
 var_dump($array_property->third->person->lastname);

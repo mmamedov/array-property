@@ -81,11 +81,11 @@ class ArrayPropertyTest extends \PHPUnit_Framework_TestCase
     {
         $prop = $this->ap;
 
-        $prop->setMode($prop::MIXED_MODE);
-        $this->assertEquals($prop::MIXED_MODE, $prop->getMode());
+        $prop->setMode(ArrayProperty::MIXED_MODE);
+        $this->assertEquals(ArrayProperty::MIXED_MODE, $prop->getMode());
 
-        $prop->setMode($prop::OBJECT_MODE);
-        $this->assertEquals($prop::OBJECT_MODE, $prop->getMode());
+        $prop->setMode(ArrayProperty::OBJECT_MODE);
+        $this->assertEquals(ArrayProperty::OBJECT_MODE, $prop->getMode());
 
     }
 
@@ -98,7 +98,7 @@ class ArrayPropertyTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($prop->app->log);
 
         //change mode
-        $prop->setMode($prop::OBJECT_MODE);
+        $prop->setMode(ArrayProperty::OBJECT_MODE);
         $this->assertTrue($prop->some instanceof ArrayProperty);
         $this->assertTrue($prop->database->host instanceof ArrayProperty);
         $this->assertTrue($prop->some instanceof ArrayProperty);
@@ -108,7 +108,7 @@ class ArrayPropertyTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEquals($prop->some, 'value');
 
         //change mode
-        $prop->setMode($prop::MIXED_MODE);
+        $prop->setMode(ArrayProperty::MIXED_MODE);
         $this->assertEquals($prop->some, 'value');
         $this->assertEquals($prop->database->host, 'localhost');
         $this->assertEquals($prop->some, 'value');
